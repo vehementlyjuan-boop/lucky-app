@@ -66,10 +66,9 @@
         tg.expand(); // Разворачиваем приложение на весь экран телефона
 
         function sendCommand(commandName) {
-            // Отправляем текст команды обратно Лакки на компьютер
-            tg.sendData(commandName);
-            tg.close(); // Закрываем Mini App после нажатия
-        }
+    window.Telegram.WebApp.postEvent("web_app_send_data", { data: commandName });
+    window.Telegram.WebApp.close();
+}
     </script>
 </body>
 </html>
