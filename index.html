@@ -65,10 +65,11 @@
         const tg = window.Telegram.WebApp;
         tg.expand(); // Разворачиваем приложение на весь экран телефона
       function sendCommand(commandName) {
-    // Подставляем ваш логин PythonAnywhere маленькими буквами
-    const cloudUser = "dkanis"; 
-    const url = `https://${cloudUser}://{cloudUser}/app_command.txt`;
-
+    const tg = window.Telegram.WebApp;
+    // Отправляем текстовую команду прямо в чат Telegram (этот метод разрешен на 100%)
+    tg.sendData(commandName);
+    tg.close(); // Закрываем Mini App
+}
     // Создаем фоновый скрытый запрос, который тайно записывает команду в облачный буфер
     fetch(url, {
         method: "PUT",
