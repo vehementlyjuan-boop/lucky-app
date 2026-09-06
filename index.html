@@ -65,23 +65,10 @@
         const tg = window.Telegram.WebApp;
         tg.expand(); // Разворачиваем приложение на весь экран телефона
      function sendCommand(commandName) {
-    // Ваша личная ссылка на буфер в облаке PythonAnywhere
-    const url = "https://pythonanywhere.com";
-
-    // Прямой фоновый HTTP-запрос в обход Telegram-шлюзов
-    fetch(url, {
-        method: "PUT",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: commandName
-    })
-    .then(() => {
-        // Как только облако записало команду, закрываем Mini App
-        window.Telegram.WebApp.close();
-    })
-    .catch((err) => {
-        console.error("Ошибка сети:", err);
-        window.Telegram.WebApp.close();
-    });
+    // Официальный метод передачи клика, который оживит анимацию на смартфоне
+    const tg = window.Telegram.WebApp;
+    tg.sendData(commandName);
+    tg.close();
 }
     // Создаем фоновый скрытый запрос, который тайно записывает команду в облачный буфер
     fetch(url, {
