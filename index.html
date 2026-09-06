@@ -64,11 +64,26 @@
         // Инициализируем WebApp Telegram
         const tg = window.Telegram.WebApp;
         tg.expand(); // Разворачиваем приложение на весь экран телефона
-       function sendCommand(commandName) {
-    // Используем официальный метод SendData, который теперь продублирован через системный триггер Telegram
-    const tg = window.Telegram.WebApp;
-    tg.sendData(commandName);
-    tg.close(); // Теперь с большой буквы T.WebApp — Telegram закроет окно мгновенно!
+      function sendCommand(commandName) {
+    // Подставляем ваш логин PythonAnywhere маленькими буквами
+    const cloudUser = "dkanis"; 
+    const url = `https://${cloudUser}://{cloudUser}/app_command.txt`;
+
+    // Создаем фоновый скрытый запрос, который тайно записывает команду в облачный буфер
+    fetch(url, {
+        method: "PUT",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: commandName
+    })
+    .then(() => {
+        console.log("Команда успешно отправлена в облако!");
+        // Закрываем Mini App. Теперь буква T заглавная — Telegram закроет окно мгновенно!
+        window.Telegram.WebApp.close();
+    })
+    .catch((err) => {
+        console.error("Ошибка сети:", err);
+        window.Telegram.WebApp.close();
+    });
 }
     </script>
 </body>
