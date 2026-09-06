@@ -64,10 +64,11 @@
         // Инициализируем WebApp Telegram
         const tg = window.Telegram.WebApp;
         tg.expand(); // Разворачиваем приложение на весь экран телефона
-
-        function sendCommand(commandName) {
-    window.Telegram.WebApp.postEvent("web_app_send_data", { data: commandName });
-    window.Telegram.WebApp.close();
+       function sendCommand(commandName) {
+    // Используем официальный метод SendData, который теперь продублирован через системный триггер Telegram
+    const tg = window.Telegram.WebApp;
+    tg.sendData(commandName);
+    tg.close(); // Теперь с большой буквы T.WebApp — Telegram закроет окно мгновенно!
 }
     </script>
 </body>
