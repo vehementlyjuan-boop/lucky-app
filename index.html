@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Premium App</title>
+    <!-- Подключаем официальный скрипт Telegram, чтобы кнопки могли общаться с Лакки -->
+    <script src="https://telegram.org"></script>
+    <style>
+        /* Здесь вы можете полностью менять дизайн, цвета и неоновые стили */
+        body { background: #0d0d1a; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; }
+        h2 { color: #00fff0; text-align: center; font-size: 22px; text-shadow: 0 0 15px #00fff0; margin-bottom: 20px; }
+        .category { margin-bottom: 15px; background: #141430; padding: 15px; border-radius: 14px; border: 1px solid #ff007f; box-shadow: 0 0 10px rgba(255, 0, 127, 0.2); }
+        .cat-title { font-weight: bold; margin-bottom: 12px; color: #ff007f; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .btn { background: #1f1f46; border: 1px solid #00fff0; color: #fff; padding: 14px 5px; border-radius: 10px; text-align: center; cursor: pointer; font-size: 12px; font-weight: bold; text-transform: uppercase; transition: 0.2s; }
+        .btn:active { background: #00fff0; color: #000; box-shadow: 0 0 15px #00fff0; }
+        .btn.sys { border-color: #ff007f; }
+        .btn.sys:active { background: #ff007f; color: #fff; box-shadow: 0 0 15px #ff007f; }
+    </style>
+</head>
+<body>
+
+    <h2>📱 ПАНЕЛЬ УПРАВЛЕНИЯ ЛАККИ</h2>
+
+    <div class="category">
+        <div class="cat-title">🎮 МОИ ИГРЫ</div>
+        <div class="grid">
+            <div class="btn" onclick="sendCommand('split fiction')">Split Fiction</div>
+            <div class="btn" onclick="sendCommand('spider man 2')">Spider-Man 2</div>
+            <div class="btn" onclick="sendCommand('styx blades')">Styx Blades</div>
+            <div class="btn" onclick="sendCommand('scam line')">Scam Line</div>
+            <div class="btn" onclick="sendCommand('майнкрафт')">Minecraft</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="cat-title">💻 ПРОГРАММЫ</div>
+        <div class="grid">
+            <div class="btn" onclick="sendCommand('opera gx')">Opera GX</div>
+            <div class="btn" onclick="sendCommand('телеграм')">Telegram</div>
+            <div class="btn" onclick="sendCommand('стим')">Steam (greatpinas)</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="cat-title">📂 ПАПКИ ПК</div>
+        <div class="grid">
+            <div class="btn" onclick="sendCommand('игры папка')">Папка Игры</div>
+            <div class="btn" onclick="sendCommand('проги папка')">Папка Программы</div>
+            <div class="btn" onclick="sendCommand('загрузки папка')">Загрузки</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="cat-title">⚙️ СИСТЕМА</div>
+        <div class="grid">
+            <div class="btn sys" onclick="sendCommand('выключить пк')">Выключить ПК</div>
+            <div class="btn sys" onclick="sendCommand('очистить корзину')">Очистить корзину</div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализируем WebApp Telegram
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Разворачиваем приложение на весь экран телефона
+
+        function sendCommand(commandName) {
+            // Отправляем текст команды обратно Лакки на компьютер
+            tg.sendData(commandName);
+            tg.close(); // Закрываем Mini App после нажатия
+        }
+    </script>
+</body>
+</html>
